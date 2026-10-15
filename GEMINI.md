@@ -21,70 +21,80 @@ This repo is a job application workspace. Google Gemini acts as a career advisor
 <!-- This section is auto-populated by /setup. You can also fill it in manually. -->
 
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
+- **Name:** Mohamad Dikshie Fauzie
+- **Location:** Tokyo, Japan (Tokyo, Ota-ku, KamataHoncho-1-1-3-804)
+- **Email:** dikshie@gmail.com
+- **Phone:** (+81) 80-5449-2362
+- **GitHub:** dikshie
+- **LinkedIn:** dikshie
 - **Languages:**
   | Language | Level |
   |----------|-------|
-  | [LANGUAGE] | [LEVEL] |
-  <!-- Every language you work in professionally, with your level (CEFR, "native," "professional
-  working proficiency," whatever your CV/LinkedIn use - no need to force it into one scale). An
-  undeclared language is a hard deal-breaker if a posting requires it; a declared language at a
-  lower level than a posting wants is flagged for your own judgment, not auto-rejected. See
-  04-job-evaluation.md's Language Gate. -->
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
-
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+  | Indonesian | Native |
+  | English | Fluent / Professional working proficiency |
+  | Japanese | Working proficiency |
+- **CV language:** English
+- **Status:** Employed (Principal Infrastructure Architect)
+- **LinkedIn headline:** "Principal Infrastructure Architect | Low-Latency & Distributed Systems | Ph.D. Keio University"
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **Ph.D. in Media and Governance (Internet Architecture & Distributed Systems)** (2011-2014) - Keio University (Tokyo, Japan)
+  - Thesis: "Dynamic P2P network topologies, swarm dynamics, and energy-efficient Content Delivery Networks (CDNs)"
+  - Topics: Distributed Network Topologies, Swarm Dynamics, Energy-Efficient CDNs, P2P Protocols, Graph Dynamics
+  - Supervisors: Prof. Jun Murai (Internet Hall of Fame / WIDE Project), Prof. Rodney Van Meter (Quantum Networking Pioneer), Dr. Kenjiro Cho, Prof. Hiroshi Kusumoto
+- **M.T. in Electrical Engineering** (2000-2004) - Institut Teknologi Bandung (ITB) (Bandung, Indonesia)
+  - Topics: IPv6 campus network backbones, core routing deployments, network performance benchmarking
+- **S.Si. in Physics** (1995-2000) - Institut Teknologi Bandung (ITB) (Bandung, Indonesia)
+  - Topics: Physical systems modeling, computational physics, instrumentation
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Data Center Engineer (Co-Manager) / Infrastructure Lead** (Oct. 2014 - Present) - **Japannext Co., Ltd.** (Tokyo, Japan)
+  - Co-managed 24/7 mission-critical, ultra-low-latency datacenter operations for Japan's primary alternative equity trading venue (PTS), maintaining 99.999% infrastructure availability under FSA regulatory compliance.
+  - Led end-to-end datacenter server migration for power-constrained production systems; orchestrated risk mitigation protocols and executed with minimal downtime, delivering 2 weeks ahead of schedule and unlocking 50% expansion capacity.
+  - Spearheaded rack-level PDU power telemetry across high-density server racks, achieving a 50% improvement in workload power balancing and optimizing facility power and cooling capacity planning.
+  - Architected enterprise scale-out storage on Dell PowerScale (Isilon) and automated LTO tape media backup systems, achieving a 50% increase in server throughput and securing long-term compliance retention.
+  - Designed and deployed open-source DCIM inventory tracking (NetBox) for physical datacenter hardware, racks, and optical consumables (SFPs/QSFPs, fiber), accelerating failure discovery and MTTR.
+  - Partnered with Unix infrastructure engineering to integrate automated system monitoring with open-source hardware discovery, asset tracking, and capacity planning.
+- **Research Assistant (Distributed Systems & Networks)** (Apr. 2011 - Sep. 2014) - **Keio University - JICA JST Indo Project** (Tokyo, Japan)
+  - Researched distributed network topologies, energy efficiency, and power consumption in large-scale peer-to-peer (P2P) networks and Content Delivery Networks (CDNs).
+  - Applied game theory models to information dissemination using probabilistic gossip protocols, analyzing graph dynamics in dynamic swarms.
+  - Published peer-reviewed research papers in international IEEE and IEICE journals and conference proceedings.
+- **System Administrator (Campus Core Infrastructure)** (Oct. 2007 - Sep. 2014) - **Keio University** (Tokyo, Japan)
+  - Administered campus server and core network infrastructure (DNS, email, web servers, BGP/OSPF routers, and switches), unifying administrative workflows for high operational reliability.
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** Low-Latency Architectures, High-Performance Systems (HPC), AI/GPU Clusters, Linux (RHEL, Ubuntu, Rocky), FreeBSD, Kernel Tuning, Datacenter Infrastructure
+- **Secondary:** TCP/UDP, BGP, OSPF, IPv6 Core, IEEE 1588v2 PTP, Sub-Nanosecond Timing, SDN, P2P/Mesh Topologies, CDN, NetFPGA
+- **Domain:** Datacenter Engineering, Proprietary Trading Systems (PTS), Financial Technology Infrastructure, Facility Thermal/Capacity Planning, Optical Metrology (SFPs/QSFPs)
+- **Software:** Dell PowerScale (Isilon), NetBox (DCIM), Docker, Kubernetes, AWS Cloud, Python, Bash/Shell, Git, SNMP Telemetry, LaTeX
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- **AI Infrastructure and Operations Fundamentals** - NVIDIA (Deep Learning Institute) (2024)
+- **Foundations of Project Management** - Google Career Certificates (2024)
+- **Introduction to Time and Frequency Measurement** - National Physical Laboratory (NPL), UK (2022)
+- **Introduction to Metrology (Measurement Standards)** - National Physical Laboratory (NPL), UK (2020)
+- **Introduction to NetFPGA (High-Speed Packet Processing)** - Stanford University (Tokyo, Japan)
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
-
-### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- Lead Author (2013). Energy Consumption in Peer Assisted CDN. International Journal of Advanced Research in Computer Science (IJARCS) Vol.4 No.9.
+- Lead Author (2012). Assessing The Dynamics of BitTorrent Swarm Topologies Using The Peer Exchange Protocol. IEICE Transactions on Communications (Special Issue on Information Network Science, Vol.E95-B, No.05).
+- Lead Author (2011). A Temporal View of The Topology of Dynamic BitTorrent Swarms. IEEE INFOCOM Workshop on Network Science for Communication Networks.
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- **Engineering Excellence:** Deep precision, rigorous verification, physical-layer through application-layer understanding
+- **Reliability & Mission-Critical Focus:** Thrive in high-stakes environments where uptime and sub-millisecond latency directly impact financial markets
+- **Strengths:** Infrastructure architecture, low-latency performance tuning, telemetry & automation, cross-disciplinary systems leadership
+- **Growth areas:** Modern distributed AI orchestration platforms, next-gen hardware acceleration
+- **Thrives in:** High-performance, high-reliability technical environments, quantitative trading systems, AI cluster infrastructure
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Architecting extreme low-latency and ultra-reliable computing/networking infrastructure
+- Scaling distributed systems, HPC, and AI cluster environments
+- Applying precision timing and hardware acceleration (PTP, NetFPGA, GPU fabrics)
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- Financial Technology & Proprietary Trading (PTS/ATS/HFT): Japannext, Tokyo Stock Exchange (JPX), Jane Street, Citadel, Jump Trading, Nomura
+- AI & High Performance Computing (HPC) Infrastructure: Preferred Networks, Sakura Internet, NTT, RIKEN, NVIDIA, Google Cloud, AWS
 
 ### Deal-breakers
 <!-- Hard constraints on job search. Language requirements are handled separately and

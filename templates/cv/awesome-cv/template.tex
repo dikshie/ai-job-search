@@ -1,0 +1,131 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for CV/Resume
+%
+% This template has been adapted for AI Job Search from:
+% https://github.com/posquit0/Awesome-CV
+
+\documentclass[11pt, a4paper]{awesome-cv}
+
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Specify the location of the included fonts
+\fontdir[fonts/]
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+
+% Social info separator
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+\name{[FIRST_NAME]}{[LAST_NAME]}
+\position{[YOUR_HEADLINE]}
+\address{[YOUR_LOCATION]}
+
+\mobile{[YOUR_PHONE]}
+\email{[YOUR_EMAIL]}
+\homepage{[YOUR_WEBSITE]}
+\github{[YOUR_GITHUB]}
+\linkedin{[YOUR_LINKEDIN]}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+% Print the header with personal information
+\makecvheader
+
+% Print the footer
+\makecvfooter
+  {\today}
+  {[FIRST_NAME] [LAST_NAME]~~~·~~~Curriculum Vitae}
+  {\thepage}
+
+%-------------------------------------------------------------------------------
+%	CV/RESUME CONTENT
+%-------------------------------------------------------------------------------
+\cvsection{Summary}
+
+\begin{cvparagraph}
+[YOUR_PROFILE_SUMMARY]
+\end{cvparagraph}
+
+\cvsection{Skills}
+
+\begin{cvskills}
+  \cvskill
+    {[PRIMARY_SKILL_CATEGORY]}
+    {[PRIMARY_SKILLS_LIST]}
+
+  \cvskill
+    {[SECONDARY_SKILL_CATEGORY]}
+    {[SECONDARY_SKILLS_LIST]}
+
+  \cvskill
+    {Languages}
+    {[LANGUAGES_LIST]}
+\end{cvskills}
+
+\cvsection{Work Experience}
+
+\begin{cventries}
+  \cventry
+    {[JOB_TITLE_1]} % Job title
+    {[COMPANY_1]} % Organization
+    {[LOCATION_1]} % Location
+    {[START_DATE_1] - [END_DATE_1]} % Date(s)
+    {
+      \begin{cvitems}
+        \item {[KEY_ACHIEVEMENT_1]}
+        \item {[KEY_RESPONSIBILITY_1]}
+        \item {[KEY_RESPONSIBILITY_2]}
+      \end{cvitems}
+    }
+
+  \cventry
+    {[JOB_TITLE_2]} % Job title
+    {[COMPANY_2]} % Organization
+    {[LOCATION_2]} % Location
+    {[START_DATE_2] - [END_DATE_2]} % Date(s)
+    {
+      \begin{cvitems}
+        \item {[KEY_ACHIEVEMENT_2]}
+        \item {[KEY_RESPONSIBILITY_3]}
+      \end{cvitems}
+    }
+\end{cventries}
+
+\cvsection{Education}
+
+\begin{cventries}
+  \cventry
+    {[DEGREE_1]} % Degree
+    {[INSTITUTION_1]} % Institution
+    {[LOCATION_EDU_1]} % Location
+    {[GRADUATION_DATE_1]} % Date(s)
+    {
+      \begin{cvitems}
+        \item {[THESIS_OR_COURSEWORK_1]}
+      \end{cvitems}
+    }
+\end{cventries}
+
+\cvsection{Certifications \& Training}
+
+\begin{cvhonors}
+  \cvhonor
+    {[CERTIFICATION_NAME]} % Award
+    {[ISSUING_ORGANIZATION]} % Event
+    {[LOCATION_OR_ONLINE]} % Location
+    {[YEAR]} % Date(s)
+\end{cvhonors}
+
+\end{document}
