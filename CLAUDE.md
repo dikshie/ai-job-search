@@ -90,8 +90,10 @@ automatically from your Languages table above - don't duplicate them here. -->
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)
 - `cover_letters/` - LaTeX cover letters (custom cover.cls template)
+- `GEMINI.md` - Agent instructions and profile for Google Gemini CLI & Antigravity
+- `requirements.txt` - Python dependencies for the virtual environment
 - `.claude/skills/` - AI skill definitions for the application workflow
-- `.agents/skills/` - Job search CLI tools
+- `.agents/skills/` - Portable agent skills (portal searches and workflows)
 
 ## Workflow for New Job Applications
 1. User provides a job posting (URL or text)

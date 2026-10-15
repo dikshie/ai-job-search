@@ -4,9 +4,12 @@ Step-by-step instructions for getting the AI Job Search framework running.
 
 ## 1. Prerequisites
 
-### Claude Code
+### Google Gemini & Claude Code
 
-Install Claude Code (Anthropic's CLI for Claude):
+This framework supports both **Google Gemini** (Gemini CLI / Google Antigravity) and **Claude Code** (Anthropic's CLI).
+
+- **Google Gemini / Antigravity:** Works out of the box with `GEMINI.md` and `AGENTS.md`. If using the Gemini CLI, install the CLI or activate your Gemini environment.
+- **Claude Code:** Install Claude Code (Anthropic's CLI for Claude):
 
 ```bash
 npm install -g @anthropic-ai/claude-code
@@ -14,15 +17,29 @@ npm install -g @anthropic-ai/claude-code
 
 You'll need an Anthropic API key or a Claude Pro/Team subscription. See the [Claude Code docs](https://docs.anthropic.com/en/docs/claude-code) for details.
 
-### Python
+### Python & Virtual Environment
 
-Python 3.10+ is required for the salary lookup tool. Check with:
+Python 3.10+ is required for the ranking and verification tools and salary lookup.
+
+A Python virtual environment is set up at `.venv/`. Activate it and install dependencies:
 
 ```bash
-python3 --version
+# macOS/Linux:
+source .venv/bin/activate
+
+# Windows PowerShell:
+.venv\Scripts\Activate.ps1
+
+# Install requirements
+pip install -r requirements.txt
 ```
 
-On Windows, `py --version` is often the most reliable check. If your system exposes Python as `python` instead of `python3`, use `python` in the commands below.
+If creating a fresh virtual environment from scratch:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Bun (for job search tools)
 
@@ -193,32 +210,36 @@ For `linkedin-search` and `freehire-search` the install is optional: both have z
 If you're outside Denmark, you can generate an equivalent search skill for your local job board with `/add-portal` — it scaffolds the same CLI structure for any public portal and test-runs a live query before registering. See the "Job search tools" section in the README.
 
 ## 4. Run the setup interview
-
-Start Claude Code in the repository:
-
+ 
+Start Google Gemini or Claude Code in the repository:
+ 
 ```bash
+# If using Google Gemini:
+gemini
+
+# If using Claude Code:
 claude
 ```
-
+ 
 Then run the onboarding:
-
+ 
 ```
 /setup
 ```
-
-Claude will offer three paths:
-
-- **Path A (documents folder):** Add your CV, LinkedIn export, diplomas, references, or past applications under `documents/`. Claude reads and cross-references them before proposing profile updates. This is best when you have several source files.
-- **Path B (single CV import):** Share one CV/resume by mentioning the file with `@` or pasting the text. Claude extracts it and asks follow-up questions for anything missing.
+ 
+The assistant will offer three paths:
+ 
+- **Path A (documents folder):** Add your CV, LinkedIn export, diplomas, references, or past applications under `documents/`. The assistant reads and cross-references them before proposing profile updates. This is best when you have several source files.
+- **Path B (single CV import):** Share one CV/resume by mentioning the file with `@` or pasting the text. The assistant extracts it and asks follow-up questions for anything missing.
 - **Path C (interview mode):** Answer structured interview questions section by section.
-
+ 
 All three paths produce the same result: fully populated profile files.
-
+ 
 ### What gets populated
-
+ 
 | File | Content |
 |------|---------|
-| `CLAUDE.md` | Your full candidate profile |
+| `GEMINI.md` / `CLAUDE.md` | Your full candidate profile |
 | `01-candidate-profile.md` | Structured education, experience, skills |
 | `02-behavioral-profile.md` | Behavioral assessment |
 | `04-job-evaluation.md` | Personalized skill match areas and career goals |
@@ -297,7 +318,7 @@ Upstream keeps improving the methodology files your fork has personalized, so pl
 
 **Prefer releases over raw `master`.** Tagged [releases](../../releases) are vetted checkpoints, each described in [CHANGELOG.md](CHANGELOG.md). Updating to a tag pulls a stable, documented state instead of whatever `master` happens to be mid-review. Fetch tags with `git fetch upstream --tags` and merge a release (for example `git merge v1.0.0`) when you want stability; pull `master` directly only when you specifically want the latest unreleased changes. The steps below apply either way - substitute the release tag for `upstream/master` where you see it.
 
-1. **Commit your personalization - but know where those commits land.** `/setup` edits CLAUDE.md and the profile skill files in place; those edits are *yours*, and committing them is what lets updates merge cleanly. But a GitHub **fork of this repo is public** - forks of public repositories cannot be made private - so anything you commit *and push to a fork* is visible to anyone. If you want your profile in a remote at all, don't push it to a fork: create a **private** repository, push there, and add this repo as the `upstream` remote (`git remote add upstream https://github.com/MadsLorentzen/ai-job-search.git`) to keep receiving updates. Committing locally without pushing is also fine. The genuinely sensitive files (tracker, salary data, `documents/`, application archives) are gitignored and never enter git either way. An uncommitted working tree is the most common reason `git pull` refuses to merge at all (`Your local changes ... would be overwritten`).
+1. **Commit your personalization - but know where those commits land.** `/setup` edits `GEMINI.md`, `CLAUDE.md` and the profile skill files in place; those edits are *yours*, and committing them is what lets updates merge cleanly. But a GitHub **fork of this repo is public** - forks of public repositories cannot be made private - so anything you commit *and push to a fork* is visible to anyone. If you want your profile in a remote at all, don't push it to a fork: create a **private** repository, push there, and add this repo as the `upstream` remote (`git remote add upstream https://github.com/MadsLorentzen/ai-job-search.git`) to keep receiving updates. Committing locally without pushing is also fine. The genuinely sensitive files (tracker, salary data, `documents/`, application archives) are gitignored and never enter git either way. An uncommitted working tree is the most common reason `git pull` refuses to merge at all (`Your local changes ... would be overwritten`).
 2. **Preview what changed before pulling:**
    ```bash
    git remote add upstream https://github.com/MadsLorentzen/ai-job-search.git   # first time only, if you cloned your own fork

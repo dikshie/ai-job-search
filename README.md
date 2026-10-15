@@ -12,9 +12,9 @@
 
 [![CI](https://github.com/MadsLorentzen/ai-job-search/actions/workflows/ci.yml/badge.svg)](https://github.com/MadsLorentzen/ai-job-search/actions/workflows/ci.yml)
 
-An AI-powered job application framework built on [Claude Code](https://claude.com/claude-code). Fork it, fill in your profile, and let Claude evaluate job postings, tailor your CV, write cover letters, and prepare you for interviews.
+An AI-powered job application framework built for [Google Gemini](https://github.com/google-gemini) and [Claude Code](https://claude.com/claude-code). Fork it, fill in your profile, and let your AI assistant evaluate job postings, tailor your CV, write cover letters, and prepare you for interviews.
 
-> Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Anthropic. Anthropic and Claude Code are referenced only to describe the toolchain this workflow uses.
+> Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Google or Anthropic. All agent frameworks are referenced only to describe the toolchains this workflow supports.
 >
 > This project has **no affiliated cryptocurrency, token, or paid sponsorship program**. Anything claiming otherwise is unauthorized and should be treated as a scam. The only ways to support the project are the Ko-fi link below and contributing on GitHub.
 
@@ -39,7 +39,7 @@ Sixty-nine tailored applications, twenty first interviews, and one signed contra
 
 ## What this is
 
-A structured workflow that turns Claude Code into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills are built for the Danish market (Jobindex, Jobnet, Akademikernes Jobbank, etc.), but the pattern is designed to be swapped for your local job boards.
+A structured workflow that turns Google Gemini or Claude Code into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills are built for the Danish market (Jobindex, Jobnet, Akademikernes Jobbank, etc.), but the pattern is designed to be swapped for your local job boards.
 
 ```
 /setup          /scrape              /apply <url>
@@ -61,8 +61,8 @@ The framework encodes career guidance best practices, including structured evalu
 
 ## Prerequisites
 
-- [Claude Code](https://claude.com/claude-code) (CLI). Claude Code has no free tier: you need a Claude Pro/Max/Team subscription or Anthropic API credits (pay-per-token, usually cheaper for occasional use). Using a different agent tool (Codex, Antigravity, Gemini CLI)? Start at [`AGENTS.md`](AGENTS.md) - the portal search skills work there out of the box, and [community forks](https://github.com/MadsLorentzen/ai-job-search/discussions/78) adapt the full workflow.
-- Python 3.10+
+- [Google Gemini CLI](https://github.com/google-gemini) / [Google Antigravity](https://github.com/google) or [Claude Code](https://claude.com/claude-code) (CLI). Works out of the box with `GEMINI.md` and `CLAUDE.md` using the thin-pointer design in [`AGENTS.md`](AGENTS.md).
+- Python 3.10+ (a Python virtual environment `.venv/` is configured; dependencies in `requirements.txt`)
 - [Bun](https://bun.sh) (for job search CLI tools)
 - LaTeX distribution with `lualatex` and `xelatex`: [TeX Live](https://tug.org/texlive/), [MacTeX](https://tug.org/mactex/), [TinyTeX](https://yihui.org/tinytex/), or [MiKTeX](https://miktex.org/). The CV compiles with `lualatex` (pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors); the cover letter compiles with `xelatex` because `cover.cls` requires `fontspec`. If using a minimal TeX install such as TinyTeX or BasicTeX, install the extra packages listed in [SETUP.md](SETUP.md#minimal-tex-install-tinytexbasictex).
 - Optional: `pip install pypdf` for `/apply`'s ATS parseability check (BSD; no Poppler required). Poppler `pdftotext` remains a fallback (macOS: `brew install poppler`, Debian/Ubuntu: `apt install poppler-utils`, Windows: `choco install poppler`). If both are missing, the check degrades to a visual keyword review.
@@ -87,10 +87,18 @@ cd ai-job-search
 > recipe is in [SETUP.md section 8](SETUP.md#8-pulling-upstream-updates-into-your-fork),
 > and every update workflow works identically. Fork only to contribute.
 
-### 2. Install job search tools
+### 2. Set up Python environment & install search tools
+
+Activate the Python virtual environment and install dependencies:
 
 ```bash
-python3 tools/install_portal_clis.py   # Windows: python tools\install_portal_clis.py
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell:
+.venv\Scripts\Activate.ps1
+
+pip install -r requirements.txt
+python tools/install_portal_clis.py   # Windows: python tools\install_portal_clis.py
 ```
 
 It runs `bun install` in every portal CLI under `.agents/skills/*/cli/` - discovered, not listed, so a portal you add with `/add-portal` or copy from another fork is included on a fresh clone. A CLI whose `package.json` declares an install-time lifecycle script is skipped and reported rather than run. `--dry-run` shows what it would install.
@@ -99,9 +107,16 @@ For `linkedin-search` and `freehire-search` the install is optional: both have z
 
 ### 3. Set up your profile
 
+Start your assistant in the repository:
+
 ```bash
+# For Google Gemini:
+gemini
+
+# For Claude Code:
 claude
-# Then inside Claude Code:
+
+# Then inside the assistant:
 /setup
 ```
 
@@ -152,7 +167,10 @@ Postings are treated as untrusted input (the workflow follows no instructions em
 
 ```
 ai-job-search/
-├── CLAUDE.md                          # Main candidate profile + workflow rules
+├── GEMINI.md                          # Google Gemini candidate profile + workflow rules
+├── CLAUDE.md                          # Claude Code candidate profile + workflow rules
+├── AGENTS.md                          # Cross-framework agent guidelines (single source of truth)
+├── requirements.txt                   # Python virtual environment dependencies
 ├── .claude/
 │   ├── commands/
 │   │   ├── apply.md                   # /apply workflow (drafter-reviewer)
@@ -254,7 +272,7 @@ If you prefer editing files directly instead of using `/setup`:
 
 | File | What to change |
 |------|---------------|
-| `CLAUDE.md` | Your full profile (name, education, experience, skills, goals) |
+| `GEMINI.md` / `CLAUDE.md` | Your full profile (name, education, experience, skills, goals) |
 | `01-candidate-profile.md` | Structured version of your CV data |
 | `02-behavioral-profile.md` | Your behavioral assessment or self-assessment |
 | `04-job-evaluation.md` | Skill match areas, career goals, motivation filters |
