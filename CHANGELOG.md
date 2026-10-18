@@ -68,6 +68,31 @@ per-file diff commands.
 
 ### Fixed
 
+- **`.gitignore` ignores `node_modules` without a trailing slash, and `security_guards.py` fails on any tracked `node_modules` path** (`.gitignore`, `tools/security_guards.py`, `tests/test_security_guards.py`) - the old `node_modules/` rule matched directories only, so a symlink named `node_modules` pointing at a contributor's absolute path was committed in a PR, broke `bun install` in CI with a dangling link and checked out as a text file on Windows. The rule loses its slash, and the guard now lists every tracked path with a `node_modules` component (skipped quietly outside a git checkout). Also qualifies the one bare `seen_jobs.json` mention left in `README.md` after #617.
+
+- **`job_key.py --audit` reports a state file that is not an object of entries** (#626) (`tools/job_key.py`,
+  `tests/test_job_key.py`) - a top-level JSON array, or an entry that is a string or number, crashed the
+  audit with an `AttributeError` traceback on `.get`, although the function already had a one-line error
+  for an unusable `seen` value. Both now print a one-line message naming the problem and exit 1.
+
+- **`freehire-search` emits the contract's `YYYY-MM-DD` date instead of the API's ISO timestamp** (#621)
+  (`.agents/skills/freehire-search/cli/src/helpers.ts`, `tests/parsing.test.ts`,
+  `tests/commands.test.ts`, `SKILL.md`) - `toResult` passed `posted_at` through verbatim, so
+  search and detail JSON carried `"date": "2026-07-06T00:00:00Z"` while every other portal CLI
+  emits the date part only and `/scrape` stores it as `posted_date: "YYYY-MM-DD"`. The table
+  and plain renderers already cut the value to ten characters, so only JSON consumers - the
+  `/scrape` path - saw the raw timestamp. A `contractDate()` helper now cuts the timestamp to
+  its date part and yields `null` for an absent or non-date value; the two tests that pinned
+  the raw timestamp now expect the date and fail on master, plus three cases on the helper.
+
+- **`/rank`, `/notion-sync` and `/upskill` name `job_scraper/seen_jobs.json` by its full path** (#617)
+  (follow-up to #608, `.claude/commands/rank.md`, `.claude/commands/notion-sync.md`,
+  `.claude/skills/upskill/SKILL.md`, `tests/test_scrape_seen_jobs_path.py`) - #608 qualified the
+  path in `/scrape`, where the file is written; the three readers still said the bare
+  `seen_jobs.json`, which an agent can resolve to the repo root, outside the ignore rule. The
+  guard test now covers all four specs, and `test_notion_sync_command.py` pins the qualified
+  phrase.
+
 - **Framework version checks compare marker values using Git-compatible paths on every platform** (#578, `tools/check_framework_version.py`) - quoting or spacing an unchanged version no longer exempts an accompanying guidance edit, hardening a latent bypass without changing legitimate version bumps.
 
 - **`/reset documents` clears nested and hidden user entries while preserving scaffolds** - cleanup retains tracked `.gitkeep` files and the README, with the complete inventory shown before confirmation (#580).
