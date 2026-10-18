@@ -39,7 +39,9 @@ function parseFlags(argv: string[]): Flags {
     // --facet repeats; collect into an array. Everything else is last-wins.
     if (key === "facet") {
       const acc = Array.isArray(flags.facet) ? flags.facet : []
-      if (typeof value === "string") acc.push(value)
+      // Preserve a bare occurrence so validation can reject it instead of
+      // silently dropping the requested filter, even after a valid --facet.
+      acc.push(typeof value === "string" ? value : "")
       flags.facet = acc
     } else {
       flags[key] = value
@@ -168,6 +170,18 @@ async function main(): Promise<number> {
   }
 
   if (cmd === "search") {
+    // These options take values, unlike bare --remote and --no-description.
+    // Treating a present-but-empty option as unset silently broadens the query.
+    for (const name of ["query", "company", "country", "region", "city", "seniority", "category", "skill", "description-format"]) {
+      const value = flags[name]
+      if (value !== undefined && (typeof value !== "string" || !value.trim())) {
+        process.stderr.write(
+          JSON.stringify({ error: `--${name} requires a non-empty value`, code: "BAD_ARG" }) + "\n",
+        )
+        return 1
+      }
+    }
+
     const fmt = flags.format !== undefined ? String(flags.format) : "json"
     if (!["json", "table", "plain"].includes(fmt)) {
       process.stderr.write(
@@ -207,6 +221,10 @@ async function main(): Promise<number> {
       }
       const key = kv.slice(0, eq)
       const vals = commaList(kv.slice(eq + 1))
+      if (vals.length === 0) {
+        process.stderr.write(JSON.stringify({ error: `invalid --facet "${kv}", want key=value with at least one value`, code: "BAD_ARG" }) + "\n")
+        return 1
+      }
       facets[key] = (facets[key] ?? []).concat(vals)
     }
 
