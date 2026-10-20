@@ -105,7 +105,7 @@ automatically from your Languages table above - don't duplicate them here. -->
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)
 - `cover_letters/` - LaTeX cover letters (custom cover.cls template)
-- `.agents/skills/` - Skills discovered by Google Gemini and Antigravity (portable Agent Skills format)
+- `.agents/skills/` - Job portal search CLIs (portable Agent Skills format)
 - `.claude/skills/` - Canonical AI skill definitions for the application workflow
 - `.claude/commands/` - Canonical workflow command definitions (`/setup`, `/scrape`, `/rank`, `/apply`, `/upskill`, etc.)
 - `tools/` - Python utilities for ranking state, layout checking, PDF ATS verification, and salary lookups
