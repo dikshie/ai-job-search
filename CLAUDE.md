@@ -103,7 +103,7 @@ automatically from your Languages table above - don't duplicate them here. -->
 - `GEMINI.md` - Agent instructions and profile for Google Gemini CLI & Antigravity
 - `requirements.txt` - Python dependencies for the virtual environment
 - `.claude/skills/` - AI skill definitions for the application workflow
-- `.agents/skills/` - Portable agent skills (portal searches and workflows)
+- `.agents/skills/` - Job portal CLIs copied in from community-portals (none shipped)
 
 ## Workflow for New Job Applications
 1. User provides a job posting (URL or text)
